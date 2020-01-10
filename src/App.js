@@ -1,24 +1,75 @@
-import React from "react";
-import logo from "./logo.svg";
+import React, { Component } from "react";
 import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hi FB Dev Circle.</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Let's Learn React
-        </a>
-      </header>
-    </div>
-  );
+const styles = {
+  maindiv: {
+    backgroundColor: "skyblue",
+    height: window.innerHeight,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  text: {
+    fontSize: 40,
+    color: "black",
+    fontWeight: "bold",
+    fontFamily: "sans-serif"
+  },
+  button: {
+    backgroundColor: "red",
+    width: 100,
+    height: 40,
+    marginLeft: 20,
+    marginTop: 20
+  }
+};
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "EveryOne",
+      color: "skyblue"
+    };
+  }
+  render() {
+    return (
+      <div
+        style={{
+          backgroundColor: this.state.color,
+          height: window.innerHeight,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+      >
+        <span style={styles.text}>Hello {this.state.name} !!!!</span>
+        <div style={{ display: "flex" }}>
+          <button
+            style={styles.button}
+            onClick={e => {
+              e.preventDefault();
+              this.setState({ name: "FBDEV-C" });
+            }}
+          >
+            Change Name
+          </button>
+          <button
+            style={styles.button}
+            onClick={e => {
+              e.preventDefault();
+              this.setState({
+                color: `rgb(${Math.floor(Math.random() * 255)},${Math.floor(
+                  Math.random() * 255
+                )},${Math.floor(Math.random() * 255)})`
+              });
+            }}
+          >
+            Change Background
+          </button>
+        </div>
+      </div>
+    );
+  }
 }
-
-export default App;
