@@ -12,9 +12,9 @@ const styles = {
   },
   text: {
     fontSize: 40,
-    color: "black",
     fontWeight: "bold",
-    fontFamily: "sans-serif"
+    fontFamily: "sans-serif",
+    color: "white"
   },
   button: {
     backgroundColor: "red",
@@ -28,7 +28,21 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "EveryOne",
+      name: [
+        "Yuv",
+        "Mohit",
+        "Sharavn",
+        "Loki",
+        "Bharat",
+        "Divyansh",
+        "Anju",
+        "Devendra",
+        "Shahid",
+        "Mayank",
+        "Radhika",
+        "Amit"
+      ],
+      index: 0,
       color: "skyblue"
     };
   }
@@ -44,13 +58,29 @@ export default class App extends Component {
           alignItems: "center"
         }}
       >
-        <span style={styles.text}>Hello {this.state.name} !!!!</span>
+        <div
+          style={{
+            padding: 20,
+            backgroundColor: "black",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <span style={{ color: "white" }}>
+            <u> Parent Component</u>
+          </span>
+          <span style={styles.text}>
+            Hello {this.state.name[this.state.index]} !!!!
+          </span>
+        </div>
         <div style={{ display: "flex" }}>
           <button
             style={styles.button}
             onClick={e => {
               e.preventDefault();
-              this.setState({ name: "FBDEV-C" });
+              this.setState({ index: Math.floor(Math.random() * 11) });
             }}
           >
             Change Name
@@ -69,6 +99,36 @@ export default class App extends Component {
             Change Background
           </button>
         </div>
+        <br />
+        <Test name={this.state.name[this.state.index]} />
+      </div>
+    );
+  }
+}
+class Test extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  render() {
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "white",
+          width: 200,
+          height: 50
+        }}
+      >
+        <span>
+          <u> Child Component</u>
+        </span>
+        <span style={{ color: "blue", paddingTop: 10 }}>
+          My Name is: {this.props.name}
+        </span>
       </div>
     );
   }
